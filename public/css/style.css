@@ -1,0 +1,23 @@
+@import url(http://fonts.googleapis.com/css?family=Special+Elite);
+
+body {
+    font-family: "Special Elite";
+}
+
+h1 {
+    font-size: 54px;
+    text-align: center;
+}
+
+p {
+    font-size: 14px;
+    font-family: Helvetica;
+}
+
+#container {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    width: 440px;
+}
+
