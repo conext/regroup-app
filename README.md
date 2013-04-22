@@ -1,4 +1,22 @@
-Since this is HTTP basic auth, try not to test it with your browser. Browsers have a sneaky way of remembering your credentials until you quit (the browser, not your job). Use curl, like so:
+Regroup
+=======
 
-curl -u wordpress:letterpull http://localhost:9393/group/1/resources/app1 | jshon    
+A prototype. 
 
+Testing
+-------
+
+Run `Regroup` on port `9393`, then run `test/check.sh`:
+
+    ~/Disarray/regroup-app(branch:master) » test/check.sh                                                                            
+    [-] unauthorized access check... [ GO ]
+    [-] testing a proper call... [ GO ]
+    [-] testing wrong credentials... [ GO ]
+
+    [:] 3 GO / 0 NO GO
+    [*] Well, nothing seems to be completely broken.
+    
+Quirks
+------
+
+Many.
