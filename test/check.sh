@@ -1,5 +1,18 @@
 #!/usr/bin/env bash
 
+nc &> /dev/null
+
+if [ $? -eq 127 ]; then
+    echo "[!] couldn't check if app is serving."
+else
+    nc -z 127.0.0.1 9393 &> /dev/null
+    if [ $? -eq 0 ]; then
+        echo "[^] ok, server already running.."
+    else
+        echo "[^] app doesn't seem to be serving on port 9393."
+    fi
+fi
+
 let gos=0
 let nogos=0
 
