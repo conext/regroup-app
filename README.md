@@ -1,5 +1,5 @@
-Regroup
-=======
+Regroup App
+===========
 
 A prototype. 
 
