@@ -64,7 +64,7 @@ end
 get '/group/:gid/resources/:app/?' do |gid, app|
   content_type :json
   if app == @app.app_id or @app.app_id == 'shindig'
-    Resource.where(['app = ?', app]).to_json
+    Resource.where(['app = ? and group_id = ?', app, gid]).to_json
   else
     json_re('you\'re not who you think you are!')
   end
