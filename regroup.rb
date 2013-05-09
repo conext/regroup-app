@@ -71,7 +71,7 @@ get '/group/:gid/resources/:app/?' do |gid, app|
 end
 
 put '/group/:gid/resources/:app/?' do |gid, app|
-  rdata = JSON.parse(request.body)
+  rdata = JSON.parse(request.body.read)
   # check if app is allowed to create resources for :app
   # shindig - anything for any app
   # any app - only that apps resources
