@@ -1,0 +1,58 @@
+#!/bin/bash
+#
+# chkconfig: 2345 90 90 
+# description: Regroup, via shotgun.
+# processname: shotgun
+
+NAME=shotgun-regroup
+REGROUPDIR=/var/www/regroup
+PIDFILE=/var/run/$NAME.pid
+LOGFILE=/var/log/$NAME.log
+SHOTGUN=/usr/local/bin/shotgun
+
+# just for a moment.
+SAVEDPATH=$PATH
+export PATH=/usr/local/bin:$PATH
+
+case "$1" in
+start)
+    if [ -f $PIDFILE ]; then
+        printf "But it's already running?\n"
+    else
+        printf "%-50s" "Reaching for shotgun..."
+        cd $REGROUPDIR
+        PID=`$SHOTGUN >> $LOGFILE 2>&1 & echo $!`
+        if [ -z "$PID" ]; then
+            # I'm really sorry for the ridiculously informative message.
+            printf "(nah)\n"
+        else
+            echo $PID > $PIDFILE
+            printf "(got it)\n"
+        fi
+    fi
+;;
+stop)
+    if [ -f $PIDFILE ]; then
+        printf "%-50s" "Putting an end to Regroup..."
+        PID=`cat $PIDFILE`
+        kill -3 $PID
+        rm $PIDFILE
+        printf "(done)\n"
+    else
+        printf "I'm not judging you, but it doesn't seem to be running.\n"
+    fi
+;;
+status)
+    if [ -f $PIDFILE ]; then
+        printf "It seems to be running, yeah.\n"
+    else
+        printf "Doesn't seem to be running.\n"
+    fi
+;;
+*)
+    printf "Usage: $0 {status|start|stop|restart}"
+    exit 1
+esac
+
+# clean up.
+export PATH=$SAVEDPATH
