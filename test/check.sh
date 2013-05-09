@@ -61,6 +61,36 @@ else
     let nogos=nogos+1
 fi
 
+echo -n "[-] testing PUT...";
+correct='{"outcome":"ok"}';
+re=$(curl -s -u photo_hut:photo_hut -X PUT http://localhost:9393/group/1000/resources/photo_hut -d '{"local_name": "T1", "uri": "T1"}')
+if [ "$re" == "$correct" ]; then
+    echo "[ GO ]";
+    let gos=gos+1
+else
+    echo " [ NO GO ]";
+    echo "[x] got:";
+    echo $re
+    echo "~ but expected:"
+    echo $correct
+    let nogos=nogos+1
+fi
+
+echo -n "[-] testing DELETE...";
+correct='{"outcome":"obliterated"}';
+re=$(curl -s -u photo_hut:photo_hut -X DELETE http://localhost:9393/group/1000/resources/photo_hut -d '{"local_name": "T1"}')
+if [ "$re" == "$correct" ]; then
+    echo "[ GO ]";
+    let gos=gos+1
+else
+    echo " [ NO GO ]";
+    echo "[x] got:";
+    echo $re
+    echo "~ but expected:"
+    echo $correct
+    let nogos=nogos+1
+fi
+
 echo
 echo "[:] $gos GO / $nogos NO GO"
 
