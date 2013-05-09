@@ -14,8 +14,7 @@ SHOTGUN=/usr/local/bin/shotgun
 SAVEDPATH=$PATH
 export PATH=/usr/local/bin:$PATH
 
-case "$1" in
-start)
+start () {
     if [ -f $PIDFILE ]; then
         printf "But it's already running?\n"
     else
@@ -30,8 +29,9 @@ start)
             printf "(got it)\n"
         fi
     fi
-;;
-stop)
+}
+
+stop() {
     if [ -f $PIDFILE ]; then
         printf "%-50s" "Putting an end to Regroup..."
         PID=`cat $PIDFILE`
@@ -41,6 +41,14 @@ stop)
     else
         printf "I'm not judging you, but it doesn't seem to be running.\n"
     fi
+}
+
+case "$1" in
+start)
+    start
+;;
+stop)
+    stop
 ;;
 status)
     if [ -f $PIDFILE ]; then
@@ -48,6 +56,10 @@ status)
     else
         printf "Doesn't seem to be running.\n"
     fi
+;;
+restart)
+    stop
+    start 
 ;;
 *)
     printf "Usage: $0 {status|start|stop|restart}"
