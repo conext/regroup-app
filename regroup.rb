@@ -76,13 +76,13 @@ put '/group/:gid/resources/:app/?' do |gid, app|
   # shindig - anything for any app
   # any app - only that apps resources
   if app == @app.app_id or @app.app_id == 'shindig'
-    if Resource.where(['(local_name = ? or uri = ?) and app = ?', rdata['local_name'], rdata['uri'], app]).first.nil?
-      Resource.create(group_id: gid, local_name: rdata['local_name'], uri: rdata['uri'], app: app)
+    if Resource.where(['local_name = ? and uri = ? and app = ?', rdata['local_name'], rdata['uri'], app]).first.nil?
+      Resource.create(group_id: gid, local_name: rdata['local_name'], uri: rdata['uri'], app: app, time: rdata['time'], owner: rdata['owner'])
       status 201
       json_re('ok')
     else
       status 409
-      json_re('tell me something I don\'t know')
+      json_re('error')
     end
   else
     json_re('mind your own apps.')
