@@ -25,7 +25,7 @@ helpers do
   end
 end
 
-before do
+before '/group/*' do
   @auth ||= Rack::Auth::Basic::Request.new(request.env)
   @app = find_app_with_creds(@auth)
   unless @auth.provided? and @auth.credentials and @app
@@ -36,17 +36,6 @@ end
 
 get '/' do
   haml :index, :format => :html5
-end
-
-get '/debug/all' do
-  Resource.find(:all).each do |r|
-    yield r.group_id
-  end
-end
-
-get '/debug/create/:group_id' do |gid|
-  Resource.create(:gid => gid)
-  "#{gid}, okay."
 end
 
 get '/group/:gid/resources/?' do |gid|
