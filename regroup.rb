@@ -57,7 +57,12 @@ get '/group/:gid/resources/?' do |gid|
     Resource.where(['group_id = ?', gid]).to_json
   else
     # return for app
-    Resource.where(['group_id = ? and app = ?', gid, @app.app_id]).to_json
+    # TODO: one-off demo hack, rework this when the sea is calm.
+    if @app.app_id == 'wordpress'
+      Resource.where(['group_id = ? and app = "https%3A%2F%2Fwordpress-widget.identitylabs.org%2Fwidget.xml"', gid]).to_json
+    else
+      Resource.where(['group_id = ? and app = ?', gid, @app.app_id]).to_json
+    end 
   end
 end
 
