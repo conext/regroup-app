@@ -1,23 +1,37 @@
-@import url(http://fonts.googleapis.com/css?family=Special+Elite);
+@import url(https://fonts.googleapis.com/css?family=Croissant+One);
+@import url(https://fonts.googleapis.com/css?family=Alef:400,700);
 
 body {
-    font-family: "Special Elite";
-}
-
-h1 {
-    font-size: 54px;
+    font-family: "Croissant One";
+    background-color: #27ae60;
+    color: #ecf0f1;
     text-align: center;
 }
 
+h1 {
+    font-size: 64px;
+}
+
 p {
-    font-size: 14px;
-    font-family: Helvetica;
+    font-size: 18px;
+    text-align: center;
+    font-family: "Alef";
+}
+
+a {
+    text-decoration: none;
+    font-weight: 700;
+    color: #f1c40f;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 #container {
     margin-left: auto;
     margin-right: auto;
-    margin-top: 30px;
+    margin-top: 140px;
     width: 440px;
 }
 
