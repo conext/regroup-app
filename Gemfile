@@ -7,8 +7,5 @@ gem 'activerecord'
 gem 'sinatra-activerecord'
 gem 'json'
 gem 'haml'
-
-group :development do
-  gem 'shotgun'
-  gem 'tux'
-end
+gem 'thin'
+gem 'tux'

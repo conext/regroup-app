@@ -9,6 +9,8 @@ REGROUPDIR=/var/www/regroup
 PIDFILE=/var/run/$NAME.pid
 LOGFILE=/var/log/$NAME.log
 SHOTGUN=/usr/local/bin/shotgun
+RUBY=/usr/local/bin/ruby
+RUNCMD="$RUBY regroup.rb -p 9393"
 
 # just for a moment.
 SAVEDPATH=$PATH
@@ -20,7 +22,7 @@ start () {
     else
         printf "%-50s" "Reaching for shotgun..."
         cd $REGROUPDIR
-        PID=`$SHOTGUN >> $LOGFILE 2>&1 & echo $!`
+        PID=`$RUNCMD >> $LOGFILE 2>&1 & echo $!`
         if [ -z "$PID" ]; then
             # I'm really sorry for the ridiculously informative message.
             printf "(nah)\n"
