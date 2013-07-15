@@ -1,0 +1,5 @@
+Our deployment assumed Sinatra/Thin runs on port 9393 with Apache reverse-proxying to it.
+
+Adjust accordingly.
+
+Use either the init.d script (in misc/) or run.sh, but then you need to handle logging yourself.
