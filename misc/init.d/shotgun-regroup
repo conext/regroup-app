@@ -4,11 +4,10 @@
 # description: Regroup, via shotgun.
 # processname: shotgun
 
-NAME=shotgun-regroup
+NAME=regroup
 REGROUPDIR=/var/www/regroup
 PIDFILE=/var/run/$NAME.pid
 LOGFILE=/var/log/$NAME.log
-SHOTGUN=/usr/local/bin/shotgun
 RUBY=/usr/local/bin/ruby
 RUNCMD="$RUBY regroup.rb -p 9393"
 
@@ -20,7 +19,7 @@ start () {
     if [ -f $PIDFILE ]; then
         printf "But it's already running?\n"
     else
-        printf "%-50s" "Reaching for shotgun..."
+        printf "%-50s" "Starting..."
         cd $REGROUPDIR
         PID=`$RUNCMD >> $LOGFILE 2>&1 & echo $!`
         if [ -z "$PID" ]; then
