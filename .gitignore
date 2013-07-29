@@ -1,3 +1,4 @@
 storage/regroup.db
 storage
 nohup.out
+config/database.yaml
