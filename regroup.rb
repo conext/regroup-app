@@ -2,8 +2,12 @@ require 'rubygems'
 require 'sinatra'
 require 'sinatra/activerecord'
 require 'json'
+require 'yaml'
 
-set :database, "sqlite3:///storage/regroup.db"
+
+DB_CONFIG = YAML::load(File.open('config/database.yaml'))
+
+set :database, "mysql://#{DB_CONFIG['username']}:#{DB_CONFIG['password']}@#{DB_CONFIG['host']}:#{DB_CONFIG['port']}/#{DB_CONFIG['database']}" 
 
 class Resource < ActiveRecord::Base
 end

@@ -1,0 +1,5 @@
+database: regroup
+username: regroup
+password: regroupandtryagain
+host: localhost
+port: 3306
