@@ -1,3 +1,4 @@
+# Rename this file to database.yaml for Sinatra to pick it up
 database: regroup
 username: regroup
 password: regroupandtryagain
