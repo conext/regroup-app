@@ -90,7 +90,7 @@ end
 delete '/group/:gid/resources/:app/?' do |gid, app|
   rdata = JSON.parse(request.body.read)
   if app == @app.app_id or @app.app_id == 'shindig'
-    Resource.where(['local_name = ?', rdata['local_name']]).first.delete
+    Resource.where(['uri = ?', rdata['uri']]).first.delete
     json_re('obliterated')
   else
     json_re('mind your own apps.')
